@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNOVEA</title>
+</head>
+
+<body>
+
+    <script>
+
+        async function getContent() {
+
+            try {
+                const response = await fetch('http://localhost:8000/')
+
+                const data = await response.json()
+
+                show(data)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        getContent()
+
+        function show(articles) {
+            let output = ''
+
+            for (let [article] of Object.entries(articles)) {
+                output += `<li>ARTIGO </br>AUTOR: ${article.author}</br> TITULO: ${article.title} </br> DESCRIÇÃO: ${article.description} </li> </br>`
+            }
+            document.querySelector('body').innerHTML = output
+
+
+            console.log(output)
+        }
+
+    </script>
+</body>
+
+</html>
